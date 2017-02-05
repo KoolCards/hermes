@@ -1,12 +1,20 @@
-function getLocation() {
+function initMap() {
+                  // Try HTML5 geolocation.
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else { 
-        console.log("Geolocation is not supported by this browser.");
+        navigator.geolocation.getCurrentPosition(function(position) {
+        var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+        };
+            console.log(position.coords.latitude);
+            console.log(position.coords.longitude);
+        }, function() {
+            console.log('Im aids');
+        });
+    } 
+        
+    else {
+          // Browser doesn't support Geolocation
+          console.log("Im aids");
     }
-}
-
-function showPosition(position) {
-    console.log("Latitude: " + position.coords.latitude + 
-    "Longitude: " + position.coords.longitude);
 }
