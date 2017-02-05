@@ -1,0 +1,49 @@
+ol {
+    text-align: center; 
+    list-style-position:inside;
+    font-family: 'Lato';
+}
+
+.optio{
+     margin-top: 50px;
+    background-color: #42b6f4; /* Green */
+    border: none;
+    color: white;
+    padding-left: 150px;
+    padding-right: 150px;
+    height: 100%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    vertical-align: middle;
+    margin-right: auto;
+    margin-left: auto;
+    left:0;
+    right:0;
+    height: 30%;
+    
+
+    
+}
+
+.option{
+    font-family: 'Lato';
+    width: 90%;
+    height: 100px;
+    background-color: #42b6f4;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    margin: 20px;
+    font-size: 20px; 
+}
+.title{
+    font-family:'Lato';
+    text-align: center;
+    font-size: 50px;    
+    border:none;
+    color: #42b6f4  ;
+}
+   
