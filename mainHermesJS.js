@@ -1,8 +1,15 @@
+<<<<<<< HEAD
+var place = new Object();
+=======
 var coord = new Object();
 var distance = new Object();
 var place = "";
 var pos = {};
+<<<<<<< HEAD
 var city = "";
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
 
 function getCoord(name) {
   jQuery.getJSON({
@@ -45,10 +52,53 @@ function convertPlace(latitude, longtitude) {
             place = result;
         }
     });
+<<<<<<< HEAD
+};
+
+convertPlace(37, -122);
+
+//function initMap() {
+//    // Try HTML5 geolocation
+
+//    if (navigator.geolocation) {
+//        navigator.geolocation.getCurrentPosition(function (position) {
+
+//            var pos = {
+//                lat: position.coords.latitude,
+//                lng: position.coords.longitude
+//            };
+//        }, function () {
+           
+//        });
+//    }
+
+//    else {
+//        // Browser doesn't support Geolocation
+//        console.log("Im aids");
+//    }
+//}
+
+
+
+=======
 }
 
+<<<<<<< HEAD
 function getCity(cityInput) {
     
 }
 
 initMap();
+=======
+            pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+        });
+    }
+    else {
+        // Browser doesn't support Geolocation
+    };
+};
+>>>>>>> origin/master
+>>>>>>> origin/master

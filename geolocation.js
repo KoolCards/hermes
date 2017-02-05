@@ -8,9 +8,9 @@ function initMap() {
               lat: position.coords.latitude,
               lng: position.coords.longitude
         };
-            console.log(coordinates_to_address(pos.lat, pos.lng));
+        console.log(pos);
         }, function() {
-            return pos;
+            console.log("Success");
         });
     } 
         
@@ -19,3 +19,5 @@ function initMap() {
           console.log("Im aids");
     }
 }
+
+
