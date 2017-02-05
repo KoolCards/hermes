@@ -20,8 +20,6 @@ function writeUserData(name) {
 
 writeUserData(name);
 
-var places = [];
-
 function scrape(){
     database.ref('/Cities').once('value').then(function (snapshot) {
         var res = snapshot.val();
@@ -29,9 +27,11 @@ function scrape(){
             if (ele == "San Jose") {
                 console.log(res[ele]);
                 for(var element in res[ele]){
-                    places.push(element);
+                    console.log(element);
                 };
-            } 
+                var places = [res[ele][Object.keys(res[ele])[0]]];
+                console.log(places);
+            }
 
         }
     })
