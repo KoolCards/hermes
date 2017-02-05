@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>    
+    <title>Hermes (Sign-In)</title>
+</head>
+    <body>
+        <p>Enter info:</p>
+        <input type="text" name="fname" placeholder="Number of Beds"><br>
+    </body>
+</html>

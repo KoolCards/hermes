@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="main.css">
+        <title>
+            Hermes
+        </title>
+        <link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  // TODO: Replace with your project's customized code snippet
+  var config = {
+    apiKey: "<API_KEY>",
+    authDomain: "hermes.firebaseapp.com",
+    databaseURL: "https://hermes-d8ba0.firebaseio.com",
+    storageBucket: "<BUCKET>.appspot.com",
+    messagingSenderId: "<SENDER_ID>",
+  };
+  firebase.initializeApp(config);
+</script>
+    </head>
+
+    
+    <body>
+        <div class = "header", class="col-mid-4">
+            <img src ="front_image.PNG">
+        </div>
+        <form action="hospitals.html">
+            <input type="text" name="fname" placeholder="Level of Emergency"><br>
+            <input class = "submit" id = "user" type="submit" value="Find Nearest Hospital">
+                
+        </form>
+    </body>
+</html>
