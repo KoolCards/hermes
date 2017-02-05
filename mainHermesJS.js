@@ -1,3 +1,5 @@
+var place = new Object();
+
 function getCoord(name) {
     var coord = new Object();
   jQuery.getJSON({
@@ -32,7 +34,6 @@ function getTimeDistance(location1Lat, location1Long, location2Lat, location2Lon
 };
 
 function convertPlace(latitude, longtitude) {
-    var place = new Object();
     jQuery.getJSON({
         type: "GET",
         dataType: "json",
@@ -44,5 +45,30 @@ function convertPlace(latitude, longtitude) {
             place.city = result;
         }
     });
-    return place;
- };
+};
+
+convertPlace(37, -122);
+
+//function initMap() {
+//    // Try HTML5 geolocation
+
+//    if (navigator.geolocation) {
+//        navigator.geolocation.getCurrentPosition(function (position) {
+
+//            var pos = {
+//                lat: position.coords.latitude,
+//                lng: position.coords.longitude
+//            };
+//        }, function () {
+           
+//        });
+//    }
+
+//    else {
+//        // Browser doesn't support Geolocation
+//        console.log("Im aids");
+//    }
+//}
+
+
+

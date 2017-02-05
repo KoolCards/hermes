@@ -21,9 +21,21 @@ function writeUserData(name) {
 writeUserData(name);
 
 function scrape(){
-    database.ref('/Cities').once('value').then(function(snapshot) {
-        console.log(snapshot.val())
+    database.ref('/Cities').once('value').then(function (snapshot) {
+        var res = snapshot.val();
+        for (var ele in res) {
+            if (ele == "San Jose") {
+                console.log(res[ele]);
+                for(var element in res[ele]){
+                    console.log(element);
+                };
+                var places = [res[ele][Object.keys(res[ele])[0]]];
+                console.log(places);
+            }
+
+        }
     })
-  };
+}
+
 
 scrape();
