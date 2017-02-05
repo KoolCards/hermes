@@ -2,8 +2,12 @@
 <html>
     <head>
         <title>Hospital Page</title>
+        <script src="jquery-3.1.1.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
         <link href="medical.css" rel="stylesheet">
+        <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+        <script src="update.js"></script>
+        <script src="new.js"></script>
     </head>
     <body>
        <div class="Container">
@@ -13,49 +17,16 @@
     <div class="Content">
         <div class="Wrapper">
             <div class="RightContent">
+                
                 <form action="newPatient.html">
                     <input type="submit" class = "option" value = "Add"><br>
                     <input type="submit" class = "option" value = "Remove"><br>
                 </form>
             </div>
-            <div class="LeftContent">
-                <ul>
-                    <li>
-                        Patient, #
-                    </li>
-                    <li>
-                        Patient, #
-                    </li>
-                    <li>
-                        Patient, #
-                    </li>
-                    <li>
-                        Patient, #
-                    </li>
-                    <li>
-                        Patient, #
-                    </li>
-                    <li>
-                        Patient, #
-                    </li>
-                    <li>
-                        Patient, #
-                    </li>
-                    <li>
-                        Patient, #
-                    </li>
-                    <li>
-                        Patient, #
-                    </li>
-                    <li>
-                        Patient, #
-                    </li>
-                    <li>
-                        Patient, #
-                    </li>
-                    <li>
-                        Patient, #
-                    </li>
+            <div class="LeftContent" style="padding-left: 4em; padding-top: 5em;">
+                <h1 id="title"></h1>
+                <ul id="list">
+                    
                 </ul>
             </div>
         </div>

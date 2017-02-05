@@ -5,21 +5,21 @@
         <title>
             Medical Portal
         </title>
+        <script src="jquery-3.1.1.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
-        <script src="fuegobase.js"></script>
+        <script src="update.js"></script>
 
     </head>
     <body>
         <div class = "header", class="col-mid-4">
             <img src ="front_image.PNG">
         </div>
-        <form action="medicalInterface.html">
-            <input type="text" name="fname" placeholder="Hospital Name"><br>
-            <input class = "submit" type="submit" value="Continue">
-                
+        <form action="medicalInterface.html" method="get">
+            <input type="text" name="fname" placeholder="Hospital Name" id="hName"><br>
+            <input class = "submit" type="submit" value="Continue" onsubmit="determine()"/>
         </form>
     </body>
 </html>

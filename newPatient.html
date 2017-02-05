@@ -2,8 +2,12 @@
 <html>
 <head>    
     <title>Patient Log</title>
+    <script src="jquery-3.1.1.js"></script>
     <link rel="stylesheet" href="form.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+    <script src="update.js"></script>
+    <script src="new.js"></script>
 </head>
     <body>
       <div class = "total">
@@ -11,12 +15,23 @@
         <div class="formClass">
             <form action = "medicalInterface.html">
                 <p>Enter information of Patient:</p>
-        <input type="number" name="fname" placeholder="Patient Name"><br>
-        <input type= "text" name="fname" placeholder="Address of Patient"><br>
-        <input type = "number" name="fname" placeholder="Severity"><br>
-                <input id="submitbutton" type="submit" value="Continue">
+        <input type="text" name="fname" placeholder="Patient Name" id="patientname"><br>
+        <input type= "number" name="phone" placeholder="Telephone Number"><br>
+        <input type = "number" name="severe" placeholder="Severity" id="severity"><br>
+                <input id="submitbutton" type="submit" value="Continue"">
+                
             </form>
+          <button id="buttonthing" onclick="add()">Add</button>
         </div>
         </div>
+        <script>
+            function add() {
+                var name = document.getElementById('patientname').textContent;
+                var severe = document.getElementById('severity').textContent;
+
+                database.ref('/Patients/San Jose').child(name).setValue(severe)({
+                })
+            }
+        </script>
     </body>
 </html>
