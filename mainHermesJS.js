@@ -1,42 +1,153 @@
-<<<<<<< HEAD
 var place = new Object();
-=======
 var coord = new Object();
-var distance = new Object();
+var distance = [];
 var place = "";
 var pos = {};
-<<<<<<< HEAD
 var city = "";
-=======
->>>>>>> origin/master
->>>>>>> origin/master
+var currDist = 999999;
+var coordStorage = {};
+var counter = 0;
+var sigFinal = [];
+var distFinal = [];
+var tempStoring = [];
+var printed = false;
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyDAMLeODfBpBozqLcPSZ1EmzDRiL5ifbQQ",
+    databaseURL: "https://hermes-d8ba0.firebaseio.com/"
+};
+
+firebase.initializeApp(config);
+
+var database = firebase.database();
+
+var name = "Vinay";
+var places = [];
+
+
+function scrape() {
+    database.ref('/Cities').once('value').then(function (snapshot) {
+        var res = snapshot.val();
+        
+        for (var ele in res) {
+            if (ele == "San Jose") {
+                console.log(res[ele]);
+                for (var element in res[ele]) {
+                    places.push(element);
+                    getCoord(places[counter]);
+                    counter = counter + 1;
+                };
+                
+            }
+
+        }
+    })
+}
+
+scrape();
+
+function getLevels () {
+    database.ref('/Patients').once('value').then(function (snapshot) {
+        var minNumber
+        var res = snapshot.val();
+        var signficance = 0;
+        var counter1 = 0;
+        for (var ele in res) {
+            if (ele == "San Jose") {
+                for (var element in res[ele]) {
+                    significance = 0;
+                    for (var user in res[ele][element]) {
+                        var temp_store = res[ele][element][user];
+                        console.log(temp_store);
+                        signficance = temp_store * 10 + signficance;
+                    }
+                    sigFinal[counter1] = signficance;
+                    console.log(sigFinal[counter1] + " " + counter1);
+                    getBeds();
+                    counter1++;
+                };
+               
+            }
+
+        }
+    })
+}
+var counter6 = 0;
+function getBeds() {
+    database.ref('/Cities').once('value').then(function (snapshot) {
+        var res = snapshot.val();
+        for (var ele in res) {
+            if (ele == "San Jose") {
+                console.log(res[ele]);
+                var counter6 = 0;
+                for (var element in res[ele]) {
+                    tempStoring[counter6] = res[ele][element];
+                    console.log(tempStoring[counter6] + " " + counter6);
+                    counter6++;
+                };
+            }
+            scrapefinal();
+
+        }
+    })
+}
+var button_my_button = "#mainbutton";
+var finalStore = [];
+var hostName;
+function scrapefinal() {
+    
+    var temp;
+    var prevTemp = 9999;
+    for (i = 0; i < 5; i++) {
+        temp = sigFinal[i] / tempStoring[i] + console.log(distance[i]);
+        
+        finalStore[i] = temp;
+        hostName = i;
+    }
+    finalStore.sort;
+    console.log(finalStore);
+    console.log(places[hostName]);
+    $(button_my_button).click(function(){
+        if (!printed) {
+            alert("Our reccomended hospital is " + places[hostName]);
+            printed = true;
+        }
+    })
+};
+
 
 function getCoord(name) {
   jQuery.getJSON({
         type: "GET",
         dataType: "json",
         'Access-Control-Allow-Origin':'*',
-        url: "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + name + "&key=AIzaSyAMOv2esR9diq2Dvq0s20ugZGLDWzmbA7Y",
+        url: "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + name + "&key=AIzaSyDtlPxyaQJlv02nIWYPjw-EFLOkOtbURsg",
         success: function (data) {
             var result = (data.results[0].geometry.location);
             coord.lat = result.lat;
             coord.long = result.lng
             console.log(result.lat);
             console.log(result.lng);
+            getTimeDistance(coord.lat, coord.long, 37.3382, 121.8863);
+           
         }
   });
 };
 
-
+var charCheck = 0;
 function getTimeDistance(location1Lat, location1Long, location2Lat, location2Long) {
     jQuery.getJSON({
         type: "GET",
         dataType: "json",
         'Access-Control-Allow-Origin': '*',
-        url: "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + location1Lat + "," + location1Long + "&destinations=" + location2Lat + "%2C" + location2Long + "&key=AIzaSyAMOv2esR9diq2Dvq0s20ugZGLDWzmbA7Y",
+        url: "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + location1Lat + "," + location1Long + "&destinations=" + location2Lat + "%2C-" + location2Long + "&key=AIzaSyDtlPxyaQJlv02nIWYPjw-EFLOkOtbURsg",
         success: function (data) {
-            distance.time = (data.rows[0].elements[0].duration.text.substring(0, 2));
-            console.log(distance);
+ 
+            distance[charCheck] = (data.rows[0].elements[0].duration.value);
+            console.log(distance[charCheck]);
+            charCheck++;
+            getLevels();
+           
         }
     });
 };
@@ -46,59 +157,36 @@ function convertPlace(latitude, longtitude) {
         type: "GET",
         dataType: "json",
         'Access-Control-Allow-Origin': '*',
-        url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + longtitude + "&key=AIzaSyAMOv2esR9diq2Dvq0s20ugZGLDWzmbA7Y",
+        url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + longtitude + "&key=AIzaSyDtlPxyaQJlv02nIWYPjw-EFLOkOtbURsg",
         success: function (data) {
             var result = (data);
             place = result;
         }
     });
-<<<<<<< HEAD
 };
 
-convertPlace(37, -122);
+function initMap() {
 
-//function initMap() {
-//    // Try HTML5 geolocation
+    if (navigator.geolocation) {
+     navigator.geolocation.getCurrentPosition(function (position) {
 
-//    if (navigator.geolocation) {
-//        navigator.geolocation.getCurrentPosition(function (position) {
-
-//            var pos = {
-//                lat: position.coords.latitude,
-//                lng: position.coords.longitude
-//            };
-//        }, function () {
-           
-//        });
-//    }
-
-//    else {
-//        // Browser doesn't support Geolocation
-//        console.log("Im aids");
-//    }
-//}
-
-
-
-=======
-}
-
-<<<<<<< HEAD
-function getCity(cityInput) {
-    
-}
-
-initMap();
-=======
-            pos = {
+            var pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
+        }, function () {
+           
         });
     }
+
     else {
-        // Browser doesn't support Geolocation
-    };
-};
->>>>>>> origin/master
->>>>>>> origin/master
+        console.log("Im aids");
+    }
+}
+
+function getCity(cityInput) {
+    var size = places.size;
+    
+ }
+
+getCity("name");
