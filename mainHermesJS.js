@@ -1,4 +1,4 @@
-function getPlaces(name) {
+function getCoord(name) {
     var coord = new Object();
   jQuery.getJSON({
         type: "GET",
@@ -30,5 +30,19 @@ function getTimeDistance(location1Lat, location1Long, location2Lat, location2Lon
     });
     return distance;
 };
-var distance = getTimeDistance(37.294705, -122.022877, 37.774929, -122.419416);
-console.log(distance.time);
+
+function convertPlace(latitude, longtitude) {
+    var place = new Object();
+    jQuery.getJSON({
+        type: "GET",
+        dataType: "json",
+        'Access-Control-Allow-Origin': '*',
+        url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longtitude + "&key=AIzaSyAMOv2esR9diq2Dvq0s20ugZGLDWzmbA7Y",
+        success: function (data) {
+            var result = (data.results[1].address_components[1].long_name);
+            console.log(result);
+            place.city = result;
+        }
+    });
+    return place;
+ };
