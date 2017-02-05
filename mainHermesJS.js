@@ -2,6 +2,7 @@ var coord = new Object();
 var distance = new Object();
 var place = "";
 var pos = {};
+var city = "";
 
 function getCoord(name) {
   jQuery.getJSON({
@@ -18,6 +19,7 @@ function getCoord(name) {
         }
   });
 };
+
 
 function getTimeDistance(location1Lat, location1Long, location2Lat, location2Long) {
     jQuery.getJSON({
@@ -44,17 +46,9 @@ function convertPlace(latitude, longtitude) {
         }
     });
 }
-function initMap() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
 
-            pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
-        });
-    }
-    else {
-        // Browser doesn't support Geolocation
-    };
-};
+function getCity(cityInput) {
+    
+}
+
+initMap();
