@@ -1,5 +1,9 @@
+var coord = new Object();
+var distance = new Object();
+var place = "";
+var pos = {};
+
 function getCoord(name) {
-    var coord = new Object();
   jQuery.getJSON({
         type: "GET",
         dataType: "json",
@@ -13,11 +17,9 @@ function getCoord(name) {
             console.log(result.lng);
         }
   });
-  return coord;
 };
 
 function getTimeDistance(location1Lat, location1Long, location2Lat, location2Long) {
-    var distance = new Object();
     jQuery.getJSON({
         type: "GET",
         dataType: "json",
@@ -28,21 +30,31 @@ function getTimeDistance(location1Lat, location1Long, location2Lat, location2Lon
             console.log(distance);
         }
     });
-    return distance;
 };
 
 function convertPlace(latitude, longtitude) {
-    var place = new Object();
     jQuery.getJSON({
         type: "GET",
         dataType: "json",
         'Access-Control-Allow-Origin': '*',
-        url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longtitude + "&key=AIzaSyAMOv2esR9diq2Dvq0s20ugZGLDWzmbA7Y",
+        url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + longtitude + "&key=AIzaSyAMOv2esR9diq2Dvq0s20ugZGLDWzmbA7Y",
         success: function (data) {
-            var result = (data.results[1].address_components[1].long_name);
-            console.log(result);
-            place.city = result;
+            var result = (data);
+            place = result;
         }
     });
-    return place;
- };
+}
+function initMap() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+
+            pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+        });
+    }
+    else {
+        // Browser doesn't support Geolocation
+    };
+};
